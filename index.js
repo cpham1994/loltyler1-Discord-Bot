@@ -3,9 +3,9 @@ const async = require('async');
 const request = require('request');
 const axios = require('axios');
 const tyler1TitleBot = new Discord.Client();
-const token = 'ODU5OTUwNTE5NjIyODI4MDUz.YN0JVA.nTVmizdi57z9nxJhHs4i9e_Ep7c';
-const prefix = '!';
-
+const config = require('./config.json');
+const token = config.token;
+const prefix = config.prefix;
 var info;
 var streamerTitle = "";
 
@@ -14,8 +14,8 @@ const options = {
     url: 'https://id.twitch.tv/oauth2/token',
     json:true,
     body: {
-    client_id: 'zmoyqn9j3xpfdivb4dj5gzpd6ccvqg',
-    client_secret: 'il52rui8jm75vhqsg8803l74n2jcw4',
+    client_id: config.twclient_id,
+    client_secret: config.twclient_secret,
     grant_type: 'client_credentials'
     }
 };
@@ -48,7 +48,7 @@ tyler1TitleBot.on('message', async message => {
                 //url: 'https://api.twitch.tv/helix/search/channels?query=loltyler1',
                 method: 'GET',
                 headers:{
-                    'Client-ID': 'zmoyqn9j3xpfdivb4dj5gzpd6ccvqg',
+                    'Client-ID': config.twclient_id,
                     'Authorization': 'Bearer ' + accessToken
                 }
             }
